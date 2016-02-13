@@ -1,0 +1,220 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container admin-container">
+
+
+
+  <div class="side-panel">
+    <div class="side-panel-div">
+
+      <div class="menu-panel">
+        <h1 class="admin-caption">Admin</h1>
+
+
+
+
+        <div class="button-container"><div class="new_project_button event-button" ng-click="showUser(false)">+ Event</div></div>
+
+        <div class="button-container"><div class="new_project_button event-button" ng-click="showUser(true)">+ User</div></div>
+
+          <!--<div style="display: inline-block;position:relative;top:10px;font-family: 'Open Sans';font-size: 16px;width:100px;"><div class="new_project_button" style="background-color: #6a6c6f;">
+            <a href="http://localhost:9000/api/leads/csv" target="_blank" style="color: #000000; text-decoration: none">= Export  </a>
+          </div>-->
+        <div class="button-container"><div class="new_project_button event-button" style="background-color: #6a6c6f;"><a href="api/leads/csv" target="_blank" style="color: #000000; text-decoration: none">= Export  </a></div></div>
+        </div>
+
+      </div>
+
+      <div ng-hide="showAddUser" class="reg-form-container">
+        <div class="add-event-roundbutton"
+             ng-click="isAddEventOpen = !isAddEventOpen">+</div>
+        <div class="add-event"  ng-show="isAddEventOpen">
+          <form class="form" name="evtForm" novalidate>
+            <input type="hidden" name="_id" ng-model="event._id"/>
+            <!--name-->
+
+
+            <div class="form-group" ng-class="{ 'has-success': evtForm.name.$valid && submitted,
+                                              'has-error': evtForm.name.$invalid && submitted }">
+              <label>Name</label>
+
+              <input type="text" name="name" class="form-control" ng-model="event.name" ng-required="isRequired"/>
+
+              <p class="help-block" ng-show="evtForm.name.$error.required && submitted">
+                Name is required
+              </p>
+
+            </div>
+
+            <br>
+            <!--venue-->
+            <div class="form-group" ng-class="{ 'has-success': evtForm.venue.$valid && submitted,
+                                              'has-error': evtForm.venue.$invalid && submitted }">
+              <label>Venue</label>
+
+              <input type="text" name="venue" class="form-control" ng-model="event.venue" ng-required="isRequired"/>
+              <p class="help-block" ng-show="evtForm.venue.$error.required && submitted">
+                Venue is required
+              </p>
+            </div>
+            <br>
+            <div>
+              <button class="btn btn-inverse btn-login" ng-show="!editMode" type="submit" ng-click="addEvent(evtForm)">
+                Add
+              </button>
+              <button class="btn btn-inverse btn-login" ng-show="editMode" type="submit" ng-click="editEvent(evtForm)">
+                Edit
+              </button>
+              <a class="btn btn-default btn-register" ng-click="resetEvent(evtForm)">
+                Reset
+              </a>
+            </div>
+          </form>
+          </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover"> <thead>
+          <tr>
+            <th>Event</th>
+            <th>Venue</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+            <tbody ng-repeat="event in events">
+            <tr>
+
+              <td class="event-name">{{event.name}}</td>
+              <td>{{event.venue}}</td>
+              <td>
+                <div>
+                  <a ng-click="showEditEvent(event)" class="edit"><span class="fa fa-edit fa-2x"></span>
+                    <a ng-click="deleteEvent(event)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+      <div ng-show="showAddUser" class="reg-form-container">
+        <div class="add-event-roundbutton"
+             ng-click="isAddUserOpen = !isAddUserOpen">+</div>
+        <div class="add-event"  ng-show="isAddUserOpen">
+          <form class="form" name="userForm" novalidate>
+
+            <div class="form-group" ng-class="{ 'has-success': userForm.username.$valid && submitted,
+                                              'has-error': userForm.username.$invalid && submitted }">
+            <label>Name</label>
+            <input type="text" name="username" class="form-control" ng-model="user.name"
+                   ng-required= "isRequired"/>
+            <p class="help-block" ng-show="userForm.username.$error.required && submitted">
+              Name is required
+            </p>
+          </div>
+            <br>
+
+            <div class="form-group" ng-class="{ 'has-success': userForm.event.$valid && submitted,
+                                              'has-error': userForm.event.$invalid && submitted }">
+              <label>Event</label>
+              <input type="text" name="event" class="form-control" ng-model="user.event"
+                     ng-required= "isRequired"/>
+              <p class="help-block" ng-show="userForm.event.$error.required && submitted">
+                event is required
+              </p>
+            </div>
+            <br>
+
+
+            <div class="form-group" ng-class="{ 'has-success': userForm.email.$valid && submitted,
+                                              'has-error': userForm.email.$invalid && submitted }">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control" ng-model="user.email"
+                     ng-required= "isRequired"
+                     mongoose-error/>
+              <p class="help-block" ng-show="userForm.email.$error.email && submitted">
+                Doesn't look like a valid email.
+              </p>
+              <p class="help-block" ng-show="userForm.email.$error.required && submitted">
+                What's your email address?
+              </p>
+              <p class="help-block" ng-show="userForm.email.$error.mongoose">
+                {{ errors.email }}
+              </p>
+            </div>
+            <br>
+
+            <div class="form-group" ng-class="{ 'has-success': userForm.password.$valid && submitted,
+                                            'has-error': userForm.password.$invalid && submitted }">
+              <label>Password</label>
+
+              <input type="password" name="password" class="form-control" ng-model="user.password"
+                     ng-minlength="3"
+                     required
+                     mongoose-error/>
+              <p class="help-block"
+                 ng-show="(userForm.password.$error.minlength || userForm.password.$error.required) && submitted">
+                Password must be at least 3 characters.
+              </p>
+              <p class="help-block" ng-show="userForm.password.$error.mongoose">
+                {{ errors.password }}
+              </p>
+            </div>
+
+
+            <br>
+            <div>
+              <button class="btn btn-inverse btn-login" type="submit" ng-click="addUser(userForm)">
+                Add
+              </button>
+              <!--<button class="btn btn-inverse btn-login" ng-show="editMode" ng-click="editUser(userForm)">-->
+                <!--Edit-->
+              <!--</button>-->
+              <a class="btn btn-default btn-register" ng-click="resetUser(userForm)">
+                Reset
+              </a>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover"> <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Event</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+            <tbody ng-repeat="user in users">
+            <tr>
+
+              <td style="color:#2f6f9f;cursor:pointer">{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.event}}</td>
+              <td>
+                <div>
+                  <!--<a ng-click="showEditUser(user)" class="edit"><span class="fa fa-edit fa-2x"></span>-->
+                    <a ng-click="deleteUser(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+.thing-form {
+    margin: 20px 0;
+}
+
+#banner {
+    border-bottom: none;
+    margin-top: -20px;
+}
+
+#banner h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.hero-unit {
+    position: relative;
+    padding: 30px 15px;
+    color: #F5F5F5;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+    background: #4393B9;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 70px;
+    border-top: 1px solid #E5E5E5;
+}
+
+.navbar-text {
+  margin-left: 15px;
+}
+
+.landing {
+  width:100%;
+  height:auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  //background-image: url('../../assets/images/landing_image.jpg');
+  background-repeat: no-repeat;background-size: contain;min-width: 100%;
+}
+
+#cal-day-box .cal-day-hour:nth-child(odd) {
+  background-color: #fafafa;
+}
+#cal-day-box .cal-day-hour-part {
+  height: 30px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-bottom: thin dashed #e1e1e1;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/opensans-light-webfont.otf') format('opentype');
+  src: url('fonts/OpenSans-Light-webfont.eot');
+  src: url('fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+  url('fonts/OpenSans-Light-webfont.woff') format('woff'),
+  url('fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+  url('fonts/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+
+  font-weight: 200;
+  font-style: normal;
+}
+.new_project_button {
+  border: 0;
+  padding: 13px 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #3eba09;
+  -webkit-transition: color 0.2s linear,box-shadow 0.2s ease,-webkit-transform 0.2s ease;
+  -moz-transition: color 0.2s linear,box-shadow 0.2s ease,-moz-transform 0.2s ease;
+  transition: color 0.2s linear,box-shadow 0.2s ease,transform 0.2s ease;
+  -webkit-box-shadow: 0 0 1px 1px rgba(0,0,0,0.04);
+  -moz-box-shadow: 0 0 1px 1px rgba(0,0,0,0.04);
+  box-shadow: 0 0 1px 1px rgba(0,0,0,0.04);
+  color:#FFFFFF;
+  /*color:#91c37f;*/
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+}
+
+.new_project_button:hover{cursor: pointer;color:#000000;-webkit-transition-duration:0.15s,0.15s,0.15s;-moz-transition-duration:0.15s,0.15s,0.15s;transition-duration:0.15s,0.15s,0.15s;-webkit-box-shadow:0 3px 10px rgba(0,0,0,0.05);-moz-box-shadow:0 3px 10px rgba(0,0,0,0.05);box-shadow:0 3px 10px rgba(0,0,0,0.05);-webkit-transform:translate(-2px, -1px);-moz-transform:translate(-2px, -1px);-ms-transform:translate(-2px, -1px);transform:translate(-2px, -1px)}
+.new_project_button:active{cursor: pointer;-webkit-transition-duration:0.05s,0.05s,0.05s;-moz-transition-duration:0.05s,0.05s,0.05s;transition-duration:0.05s,0.05s,0.05s;-webkit-box-shadow:0 0 0 1px rgba(0,0,0,0.04),0 3px 2px #fff,inset 0 2px 2px rgba(0,0,0,0.02);-moz-box-shadow:0 0 0 1px rgba(0,0,0,0.04),0 3px 2px #fff,inset 0 2px 2px rgba(0,0,0,0.02);box-shadow:0 0 0 1px rgba(0,0,0,0.04),0 3px 2px #fff,inset 0 2px 2px rgba(0,0,0,0.02);background-color:#f8f8f8;-webkit-transform:translate(0, 0);-moz-transform:translate(0, 0);-ms-transform:translate(0, 0);transform:translate(0, 0)}.white-button.small{padding:11px 16px;font-size:15px}
+
+input[type=text], input[type=email], input[type=password] {
+  font-family: 'Open Sans';
+  height: 35px;
+  min-width: 300px;
+  border-left:0px;
+  border-right:0px;
+  border-top:0px;
+  display: block;
+  width: 80%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: transparent;
+  background-image: none;
+  border-bottom: 1px solid #000;
+  border-radius: 0px;
+  box-shadow: none;
+  outline: none;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus {
+  border-color: transparent;
+  border-bottom: 1px solid #000;
+  outline: 0;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.main-container {
+  clear:both;width:100%;height:100%;padding:5px;
+}
+
+.view-area {
+  display:block;width:100%;height:100%;padding:5px;
+}
+
+.registration_panel {
+  display:block;width:100%;height:100%;position: relative;top:0px;left:2%;
+}
+
+.sidebar {
+  display: inline-block;width:25%;height:100%;float:left
+}
+
+.eventname {
+  font-family: 'Open Sans';font-size:30px;color:#6a6c6f;font-weight: 200;text-shadow: 0px 1px 1px #FFFFFF;
+}
+.event-details {
+  cursor:pointer;
+}
+
+.regcount {
+  font-family: 'Open Sans';font-size:56px;color:#542381;font-weight: 200;margin-top: 70px;
+}
+
+.regText {
+  font-family: 'Open Sans';font-size:14px;color:#542381;font-weight: 200;margin-top: -10px;
+}
+
+.save_status {
+  display: inline-block;position:relative;top:10px;font-family: 'Open Sans';font-size: 16px;width:100px;
+}
+
+.registration-form-container {
+  display: inline-block;width:65%;top:5px;border-left: 1px solid #6a6c6f;padding: 20px;position: relative;right:20px;height:100%;font-family: 'Open Sans'
+}

@@ -1,0 +1,98 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<style>
+
+</style>
+<div class="container">
+  <div class="round-button"
+       ng-click="isAddUserOpen = !isAddUserOpen">+</div>
+  <div class="add-user" ng-show="isAddUserOpen">
+    <form class="form" name="form" ng-submit="addUser(form)" novalidate>
+
+      <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+                                            'has-error': form.name.$invalid && submitted }" style="font-family: 'Open Sans'">
+        <label>Name</label>
+
+        <input type="text" name="name" class="form-control" ng-model="user.name"
+               required/>
+        <p class="help-block" ng-show="form.name.$error.required && submitted">
+          A name is required
+        </p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                            'has-error': form.email.$invalid && submitted }" style="font-family: 'Open Sans'">
+        <label>Email</label>
+
+        <input type="email" name="email" class="form-control" ng-model="user.email"
+               required
+               mongoose-error/>
+        <p class="help-block" ng-show="form.email.$error.email && submitted">
+          Doesn't look like a valid email.
+        </p>
+        <p class="help-block" ng-show="form.email.$error.required && submitted">
+          What's your email address?
+        </p>
+        <p class="help-block" ng-show="form.email.$error.mongoose">
+          {{ errors.email }}
+        </p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                            'has-error': form.password.$invalid && submitted }" style="font-family: 'Open Sans'">
+        <label>Password</label>
+
+        <input type="password" name="password" class="form-control" ng-model="user.password"
+               ng-minlength="3"
+               required
+               mongoose-error/>
+        <p class="help-block"
+           ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+          Password must be at least 3 characters.
+        </p>
+        <p class="help-block" ng-show="form.password.$error.mongoose">
+          {{ errors.password }}
+        </p>
+      </div>
+
+      <div style="font-family: 'Open Sans'">
+        <button class="btn btn-inverse btn-success" type="submit">
+          Sign up
+        </button>
+
+        <button class="btn btn-inverse btn-default" type="button">
+          Cancel
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+
+
+  <div class="table-responsive">
+    <table class="table table-hover"> <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+      <tbody ng-repeat="user in users">
+      <tr>
+
+        <td style="color:#2f6f9f;cursor:pointer">{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          <div>
+            <a ng-click="edit(user)" class="edit"><span class="fa fa-edit fa-2x"></span>
+            <a ng-click="delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span></a>
+
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

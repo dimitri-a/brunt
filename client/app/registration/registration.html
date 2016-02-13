@@ -1,0 +1,143 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container main-container">
+
+  <div class="view-area">
+    <div class="registration_panel">
+
+      <div class="sidebar">
+        <h1 class="eventname">{{eventName}}</h1>
+
+
+        <div class="event-details">
+          <h3 class="regcount">{{registrationCount}}</h3>
+          <h3 class="regText">Registrations</h3>
+        </div>
+        <div id="save_status">{{alert}}</div>
+
+        </div>
+
+      </div>
+
+      <div class="registration-form-container">
+        <form class="form" name="regForm" novalidate>
+        <!--name-->
+        <div class="form-group" ng-class="{ 'has-success': regForm.name.$valid && submitted,
+                                            'has-error': regForm.name.$invalid && submitted }">
+          <label>Name</label>
+
+          <input type="text" name="name" class="form-control" ng-model="lead.name"
+                 ng-required= "isRequired"/>
+          <p class="help-block" ng-show="regForm.name.$error.required && submitted">
+            Name is required
+          </p>
+
+        </div>
+        <br>
+        <!--address-->
+        <div class="form-group" ng-class="{ 'has-success': regForm.address.$valid && submitted,
+                                            'has-error': regForm.address.$invalid && submitted }">
+          <label>Address</label>
+
+          <input type="text" name="address" class="form-control" ng-model="lead.address"
+                 ng-required= "isRequired"/>
+          <p class="help-block" ng-show="regForm.address.$error.required && submitted">
+            Address is required
+          </p>
+        </div>
+        <br>
+
+        <!--DOB-->
+        <div class="form-group"  ng-class="{ 'has-success': regForm.dob.$valid && submitted,
+                                              'has-error': regForm.dob.$invalid && submitted }">
+          <label>DOB</label>
+
+            <input type="text" name="dob" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="lead.dob" />
+
+        </div>
+        <br>
+
+        <!-- phone -->
+        <div class="form-group" ng-class="{ 'has-success': regForm.phone.$valid && submitted,
+                                              'has-error': regForm.phone.$invalid && submitted }">
+          <label>Phone</label>
+
+          <input type="text" name="phone" class="form-control" ng-model="lead.phone"
+                 ng-required= "isRequired"/>
+          <p class="help-block" ng-show="regForm.phone.$error.required && submitted">
+            Phone is required
+          </p>
+        </div>
+        <br>
+        <!-- mobile -->
+        <div class="form-group" ng-class="{ 'has-success': regForm.mobile.$valid && submitted,
+                                                'has-error': regForm.mobile.$invalid && submitted }">
+          <label>Mobile</label>
+
+          <input type="text" name="mobile" class="form-control" ng-model="lead.mobile"
+                 ng-required= "isRequired"/>
+          <p class="help-block" ng-show="regForm.mobile.$error.required && submitted">
+            Mobile is required
+          </p>
+        </div>
+        <br>
+        <div class="form-group" ng-class="{ 'has-success': regForm.email.$valid && submitted,
+                                            'has-error': regForm.email.$invalid && submitted }">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="lead.email"
+                 ng-required= "isRequired"
+                 mongoose-error/>
+          <p class="help-block" ng-show="regForm.email.$error.email && submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="regForm.email.$error.required && submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="regForm.email.$error.mongoose">
+            {{ errors.email }}
+          </p>
+        </div>
+        <br>
+
+
+        <!-- note -->
+        <div class="form-group" ng-class="{ 'has-success': regForm.note.$valid && submitted,
+                                              'has-error': regForm.note.$invalid && submitted }">
+          <label>Note</label>
+
+          <input type="text" name="note" class="form-control" ng-model="lead.note"
+                 ng-required= "isRequired"/>
+          <p class="help-block" ng-show="regForm.note.$error.required && submitted">
+            Note is required
+          </p>
+        </div>
+        <br>
+
+        <div class="form-group" ng-class="{ 'has-success': regForm.consent.$valid && submitted,
+                                            'has-error': regForm.consent.$invalid && submitted }">
+          <div class="checkbox" name="consent" >
+            <label>
+              <input type="checkbox" ng-model="lead.consent" ng-required= "isRequired"> I agree to the Conditions of Entry
+            </label>
+            <p class="help-block" ng-show="regForm.note.$error.required && submitted">
+              Your consent is required
+            </p>
+          </div>
+        </div>
+        <br>
+
+        <div>
+          <button class="btn btn-inverse btn-lg btn-login" ng-click="registerLeads(regForm)">
+            Register
+          </button>
+          <a class="btn btn-default btn-lg btn-register" ng-click="reset(regForm)">
+            Reset
+          </a>
+        </div>
+
+      </form>
+      </div>
+    </div>
+  </div>
+</div>

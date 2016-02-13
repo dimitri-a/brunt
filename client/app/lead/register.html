@@ -1,0 +1,141 @@
+<!--<div class="container">
+    <div class="row">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputName">Name</label>
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputAddress">Address</label>
+                <input type="text" class="form-control" id="exampleInputAddress" placeholder="Address">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPhone">Phone</label>
+                <input type="text" class="form-control" id="exampleInputPhone" placeholder="Phone">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputMobile">Mobile</label>
+                <input type="text" class="form-control" id="exampleInputMobile" placeholder="Mobile">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password">
+            </div>
+
+            <button type="submit" class="btn btn-default" data-ng-click="register()">Submit</button>
+        </form>
+    </div>
+</div>-->
+
+<div class="container">
+    <div class="row" ng-show="showStatus">
+        <div ng-if="alert === 'success'" style="color: #3c763d;background-color: #dff0d8;border-color: #d6e9c6;padding: 15px;margin-bottom: 20px;border: 1px solid transparent;border-radius: 4px;" role="alert"> <strong>Success!</strong> Contact added.</div><div>
+          <div ng-if="alert === 'error'" style="padding: 15px;margin-bottom: 20px;border: 1px solid transparent;border-radius: 4px;color: #a94442;background-color: #f2dede;border-color: #ebccd1;" role="alert"> <strong>Oh snap!</strong> Try submitting again. </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Register</h1>
+        </div>
+        <div class="col-sm-12">
+            <form class="form" name="regForm" novalidate>
+                <!--name-->
+                <div class="form-group" ng-class="{ 'has-success': regForm.name.$valid && submitted,
+                                            'has-error': regForm.name.$invalid && submitted }">
+                    <label>Name</label>
+
+                    <input type="text" name="name" class="form-control" ng-model="lead.name"
+                           ng-required= "isRequired"/>
+                    <p class="help-block" ng-show="regForm.name.$error.required && submitted">
+                        Name is required
+                    </p>
+                </div>
+                <!--address-->
+                <div class="form-group" ng-class="{ 'has-success': regForm.address.$valid && submitted,
+                                            'has-error': regForm.address.$invalid && submitted }">
+                    <label>Address</label>
+
+                    <input type="text" name="address" class="form-control" ng-model="lead.address"
+                           ng-required= "isRequired"/>
+                    <p class="help-block" ng-show="regForm.address.$error.required && submitted">
+                        Address is required
+                    </p>
+                </div>
+                <!-- phone -->
+                <div class="form-group" ng-class="{ 'has-success': regForm.phone.$valid && submitted,
+                                              'has-error': regForm.phone.$invalid && submitted }">
+                  <label>Phone</label>
+
+                  <input type="text" name="phone" class="form-control" ng-model="lead.phone"
+                         ng-required= "isRequired"/>
+                  <p class="help-block" ng-show="regForm.phone.$error.required && submitted">
+                    Phone is required
+                  </p>
+                </div>
+
+              <!-- mobile -->
+                <div class="form-group" ng-class="{ 'has-success': regForm.mobile.$valid && submitted,
+                                                'has-error': regForm.mobile.$invalid && submitted }">
+                  <label>Mobile</label>
+
+                  <input type="text" name="mobile" class="form-control" ng-model="lead.mobile"
+                         ng-required= "isRequired"/>
+                  <p class="help-block" ng-show="regForm.mobile.$error.required && submitted">
+                    Mobile is required
+                  </p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-success': regForm.email.$valid && submitted,
+                                            'has-error': regForm.email.$invalid && submitted }">
+                    <label>Email</label>
+
+                    <input type="email" name="email" class="form-control" ng-model="lead.email"
+                           ng-required= "isRequired"
+                           mongoose-error/>
+                    <p class="help-block" ng-show="regForm.email.$error.email && submitted">
+                        Doesn't look like a valid email.
+                    </p>
+                    <p class="help-block" ng-show="regForm.email.$error.required && submitted">
+                        What's your email address?
+                    </p>
+                    <p class="help-block" ng-show="regForm.email.$error.mongoose">
+                        {{ errors.email }}
+                    </p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-success': regForm.password.$valid && submitted,
+                                            'has-error': regForm.password.$invalid && submitted }">
+                    <label>Password</label>
+
+                    <input type="password" name="password" class="form-control" ng-model="lead.password"
+                           ng-minlength="3"
+                           ng-required= "isRequired"
+                           mongoose-error/>
+                    <p class="help-block"
+                       ng-show="(regForm.password.$error.minlength || regForm.password.$error.required) && submitted">
+                        Password must be at least 3 characters.
+                    </p>
+                    <p class="help-block" ng-show="regForm.password.$error.mongoose">
+                        {{ errors.password }}
+                    </p>
+                </div>
+
+                <div>
+                    <button class="btn btn-inverse btn-lg btn-login" ng-click="registerLeads(regForm)">
+                        Register
+                    </button>
+                    <a class="btn btn-default btn-lg btn-register" ng-click="reset(regForm)">
+                        Reset
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
